@@ -14,7 +14,7 @@
     <!-- FIREBASE CONNECTION (Fonctionnelle avec tes clés) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
         const firebaseConfig = {
@@ -33,13 +33,50 @@
             const analytics = getAnalytics(app);
             const provider = new GoogleAuthProvider();
 
-            window.loginWithGoogle = async () => {
+            // Avertit si le fichier est servi via le protocole file://, ce qui empêche l'authentification Firebase
+            if (window.location.protocol === 'file:') {
+                console.warn(
+                    'Firebase Auth ne peut pas terminer l’authentification sur le protocole file://. Servez plutôt votre fichier via http(s):// ou ajoutez le domaine dans la console Firebase.'
+                );
+            }
+
+            // FIX: Google popup closing – ensure popup is triggered directly in click handler
+            // Expose auth and provider for reuse
+            window._firebaseAuth = auth;
+            window._firebaseProvider = provider;
+            /**
+             * Déclenche l'authentification Google.
+             * Appelle signInWithPopup directement sans async/await pour conserver le geste utilisateur.
+             * En cas d'échec ou de blocage du popup, bascule automatiquement sur signInWithRedirect.
+             * @returns {Promise<import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js").User|null>}
+             */
+            window.loginWithGoogle = () => {
                 try {
-                    const result = await signInWithPopup(auth, provider);
-                    return result.user;
-                } catch (error) {
-                    console.error("Erreur connexion:", error);
-                    return null;
+                    // L'appel est immédiat pour éviter la fermeture automatique du popup sur Safari/Firefox.
+                    return signInWithPopup(auth, provider)
+                        .then((result) => {
+                            return result.user;
+                        })
+                        .catch((error) => {
+                            console.warn("Popup Google fermé ou bloqué, tentative de fallback redirect:", error);
+                            // Certains navigateurs ou configurations refusent les popups sur file:// ou domaines non autorisés.
+                            // On tente un fallback redirect uniquement si la page est servie en http(s),
+                            // car le protocole file:// ne supporte pas le flux OAuth.
+                            if (window.location.protocol.startsWith('http')) {
+                                return signInWithRedirect(auth, provider)
+                                    .then(() => null)
+                                    .catch((err) => {
+                                        console.error("Échec du fallback redirect:", err);
+                                        return null;
+                                    });
+                            } else {
+                                console.warn('Impossible d\'utiliser signInWithRedirect sur le protocole file://. Configurez un serveur local ou autorisez le domaine dans Firebase.');
+                                return null;
+                            }
+                        });
+                } catch (err) {
+                    console.error("Erreur inattendue lors de l'authentification:", err);
+                    return Promise.resolve(null);
                 }
             };
 
@@ -513,14 +550,17 @@
                 }
             };
             
-            const handleLogin = async () => {
+            // FIX: appel direct pour conserver le geste utilisateur et éviter la fermeture du popup
+            const handleLogin = () => {
                 if (!window.loginWithGoogle) {
                     return;
                 }
-                const loggedInUser = await window.loginWithGoogle();
-                if (loggedInUser) {
-                    setUser(loggedInUser);
-                }
+                // on déclenche la promesse et on gère l'utilisateur une fois connecté
+                window.loginWithGoogle().then((loggedInUser) => {
+                    if (loggedInUser) {
+                        setUser(loggedInUser);
+                    }
+                });
             };
 
             const handleLogout = async () => {
