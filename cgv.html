@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-black">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GENDASH PRO | CGV</title>
+    
+    <!-- Core -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        black: '#050505',
+                        white: '#EAEAEA',
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\" opacity=\"0.05\"/%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            cursor: auto; 
+            overflow-x: hidden;
+            background-color: #050505;
+            min-height: 100vh;
+        }
+        
+        @media (hover: hover) and (pointer: fine) {
+            body { cursor: none; }
+        }
+
+        /* CURSEUR PERSONNALISÉ */
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            display: none; 
+        }
+        @media (hover: hover) and (pointer: fine) {
+            #cursor { display: block; }
+        }
+        #cursor.hovered {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border: none;
+            mix-blend-mode: difference;
+        }
+
+        /* ANIMATION D'APPARITION */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stroke-text {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- ICÔNES ---
+        const ArrowLeft = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>;
+
+        // --- COMPOSANTS ---
+        
+        const CustomCursor = () => {
+            useEffect(() => {
+                const cursor = document.getElementById('cursor');
+                if (!cursor) return;
+                const moveCursor = (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                };
+                const hoverElements = document.querySelectorAll('a, button, .hover-trigger');
+                hoverElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+                    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+                });
+                window.addEventListener('mousemove', moveCursor);
+                return () => window.removeEventListener('mousemove', moveCursor);
+            }, []);
+            return <div id="cursor"></div>;
+        };
+
+        const Reveal = ({ children, delay = 0 }) => {
+            const ref = useRef(null);
+            useEffect(() => {
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            if (ref.current) ref.current.classList.add('visible');
+                        }, delay);
+                    }
+                }, { threshold: 0.1 }); 
+                if (ref.current) observer.observe(ref.current);
+                return () => observer.disconnect();
+            }, [delay]);
+            return <div ref={ref} className="reveal-text">{children}</div>;
+        };
+
+        const TermSection = ({ title, content }) => (
+            <div className="mb-16">
+                <h3 className="text-white font-display font-bold text-xl uppercase tracking-widest mb-6 flex items-center gap-3">
+                    <span className="w-8 h-px bg-white/20"></span> {title}
+                </h3>
+                <div className="text-zinc-500 text-sm leading-relaxed space-y-4 pl-11">
+                    {content}
+                </div>
+            </div>
+        );
+
+        const App = () => {
+            return (
+                <div className="relative min-h-screen bg-black text-white selection:bg-white selection:text-black flex flex-col">
+                    <CustomCursor />
+                    <div className="fixed inset-0 bg-noise pointer-events-none z-0 mix-blend-overlay opacity-20"></div>
+
+                    {/* NAVIGATION */}
+                    <nav className="fixed w-full z-50 px-6 py-6 mix-blend-difference text-white flex justify-between items-center">
+                        <a href="index.html" className="font-display font-bold text-xl tracking-tighter hover-trigger cursor-pointer">GENDASH.</a>
+                        <a href="index.html" className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-transparent hover:border-white pb-1 transition-colors hover-trigger cursor-pointer text-zinc-400 hover:text-white">
+                            <ArrowLeft /> Accueil
+                        </a>
+                    </nav>
+
+                    {/* ENTÊTE */}
+                    <header className="relative pt-40 pb-20 px-4 z-10 text-center">
+                        <Reveal>
+                            <h1 className="text-[10vw] md:text-[8vw] font-display font-bold tracking-tighter uppercase leading-none">
+                                CONDITIONS <br/><span className="stroke-text">GÉNÉRALES</span>
+                            </h1>
+                            <p className="text-zinc-500 text-xs uppercase tracking-[0.5em] mt-8">Vente & Utilisation</p>
+                        </Reveal>
+                    </header>
+
+                    {/* CONTENU PRINCIPAL */}
+                    <main className="flex-grow max-w-4xl mx-auto px-6 relative z-10 pb-32">
+                        <Reveal delay={200}>
+                            <TermSection 
+                                title="1. Objet" 
+                                content={
+                                    <p>Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre l'entreprise <strong>Aerix / Oscar Sander</strong> et toute personne effectuant un achat sur le site GENDASH PRO. L'acquisition d'un produit numérique implique une acceptation sans réserve des présentes CGV.</p>
+                                }
+                            />
+
+                            <TermSection 
+                                title="2. Produits" 
+                                content={
+                                    <p>GENDASH PRO propose des produits numériques sous forme de packs de templates (HTML/React). Ces produits sont livrés de manière dématérialisée. Les images et démonstrations sur le site sont fournies à titre illustratif pour présenter les capacités de personnalisation des outils.</p>
+                                }
+                            />
+
+                            <TermSection 
+                                title="3. Prix et Paiement" 
+                                content={
+                                    <>
+                                        <p>Le prix de l'accès à vie est fixé à <strong>249€</strong>. Ce prix est ferme et définitif. Aerix se réserve le droit de modifier ses prix à tout moment, mais le produit sera facturé sur la base du tarif en vigueur au moment de la validation de la commande.</p>
+                                        <p>Le règlement s'effectue via les plateformes sécurisées <strong>Revolut</strong> ou <strong>Stripe</strong>. La commande n'est validée qu'après confirmation du paiement par l'organisme bancaire.</p>
+                                    </>
+                                }
+                            />
+
+                            <TermSection 
+                                title="4. Livraison" 
+                                content={
+                                    <p>La livraison est instantanée. Une fois le paiement validé, un lien de téléchargement ou un pack compressé (.zip) est envoyé automatiquement à l'adresse email renseignée lors de l'achat. En cas de non-réception, l'acheteur est invité à contacter le support à <strong>gendash.fr@proton.me</strong>.</p>
+                                }
+                            />
+
+                            <TermSection 
+                                title="5. Droit de rétractation" 
+                                content={
+                                    <p>Conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation ne peut être exercé pour les contrats de fourniture de contenus numériques non fournis sur un support matériel dont l'exécution a commencé après accord préalable exprès du consommateur et renoncement exprès à son droit de rétractation. <strong>En validant votre achat, vous acceptez l'accès immédiat au contenu et renoncez explicitement à votre droit de rétractation. Aucun remboursement ne sera effectué après livraison.</strong></p>
+                                }
+                            />
+
+                            <TermSection 
+                                title="6. Propriété Intellectuelle" 
+                                content={
+                                    <p>L'achat d'un pack GENDASH PRO confère un droit d'utilisation personnel et commercial. Cependant, la revente, la distribution gratuite ou la sous-licence du code source original des templates est strictement interdite. Aerix conserve l'intégralité des droits de propriété intellectuelle sur les structures et algorithmes originaux.</p>
+                                }
+                            />
+
+                            <TermSection 
+                                title="7. Loi Applicable" 
+                                content={
+                                    <p>Les présentes CGV sont soumises à la loi française. En cas de litige, et après tentative de résolution à l'amiable, les tribunaux d'Auxerre seront seuls compétents.</p>
+                                }
+                            />
+                        </Reveal>
+                    </main>
+
+                    {/* PIED DE PAGE */}
+                    <footer className="py-20 px-6 border-t border-white/10 bg-[#020202] z-10 relative">
+                        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+                            <div className="flex flex-col gap-6 max-w-xs text-left">
+                                <h2 className="text-3xl font-display font-bold tracking-tighter select-none">GENDASH</h2>
+                                <p className="text-zinc-500 text-sm leading-relaxed">
+                                    La référence en matière de preuve sociale visuelle. Dominez votre marché avec des outils d'élite.
+                                </p>
+                            </div>
+                            
+                            <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-20">
+                                <div className="flex flex-col gap-4 text-left">
+                                    <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Socials</h3>
+                                    <a href="https://www.instagram.com/gendashboard?igsh=YWVjejk2cjlkd2N5" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Instagram</a>
+                                    <a href="https://www.tiktok.com/@gendash.fr" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">TikTok</a>
+                                </div>
+                                
+                                <div className="flex flex-col gap-4 text-left">
+                                    <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Légal</h3>
+                                    <a href="mentions-legales.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Mentions Légales</a>
+                                    <a href="confidentialite.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Confidentialité</a>
+                                    <a href="cgv.html" className="text-white font-bold transition-colors text-sm hover-trigger cursor-pointer">CGV</a>
+                                </div>
+                                
+                                <div className="flex flex-col gap-4 text-left">
+                                    <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2 text-left">Société</h3>
+                                    <a href="pdg.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">PDG</a>
+                                    <a href="support.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Support</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                            <p className="text-[10px] text-zinc-600 uppercase tracking-widest">© 2024 GENDASH PRO. All rights reserved.</p>
+                            <div className="flex gap-4">
+                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                                <span className="text-[10px] text-zinc-500 uppercase tracking-widest">System Operational</span>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
