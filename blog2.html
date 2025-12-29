@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-black">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO META -->
+    <title>Gendash vs Photoshop : le meilleur pour créer une maquette de dashboard en 2025</title>
+    <meta name="description" content="Comparatif complet Gendash vs Photoshop : vitesse, réalisme, personnalisation, export HD, workflow créateur. Quelle solution choisir pour des maquettes de dashboards Stripe/Shopify ?" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://gendash.pro/blog/gendash-vs-photoshop-maquette-dashboard" />
+    <meta name="theme-color" content="#050505" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Gendash vs Photoshop : le comparatif 2025" />
+    <meta property="og:description" content="Vitesse ou Contrôle ? Découvrez quel outil choisir pour vos maquettes de dashboard." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://gendash.pro/blog/gendash-vs-photoshop-maquette-dashboard" />
+    
+    <!-- Core Libs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        black: '#050505',
+                        white: '#EAEAEA',
+                        brand: '#6366f1',
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\" opacity=\"0.05\"/%3E%3C/svg%3E')",
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #EAEAEA; overflow-x: hidden; }
+        ::selection { background: #EAEAEA; color: #050505; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* Custom Cursor */
+        #cursor {
+            position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+            border: 1px solid white; border-radius: 50%; pointer-events: none;
+            z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            display: none;
+        }
+        @media (hover: hover) { #cursor { display: block; } }
+        #cursor.hovered { width: 60px; height: 60px; background-color: white; border: none; }
+
+        .reveal-text { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal-text.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Blog Typography */
+        .blog-content p { margin-bottom: 1.5rem; line-height: 1.8; color: #a1a1aa; font-weight: 300; font-size: 1.125rem; }
+        .blog-content h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 2rem; color: #fff; margin-top: 3.5rem; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .blog-content h3 { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.5rem; color: #fff; margin-top: 2rem; margin-bottom: 1rem; }
+        .blog-content strong { color: #fff; font-weight: 600; }
+        .blog-content ul { margin-bottom: 1.5rem; padding-left: 0.5rem; color: #a1a1aa; }
+        
+        /* SVG List Bullet */
+        .blog-content li { margin-bottom: 0.75rem; position: relative; padding-left: 1.5rem; line-height: 1.7; }
+        .blog-content li::before { 
+            content: ""; 
+            position: absolute; 
+            left: 0; 
+            top: 11px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+        
+        .highlight-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.5rem; border-radius: 0.5rem; margin: 2rem 0; }
+        
+        /* Table styles removed in favor of Tailwind Grid */
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- ICONS ---
+        const Plus = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>;
+        const Minus = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>;
+        const ArrowRight = ({ className }) => <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>;
+        const Check = ({ className }) => <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>;
+        const Star = ({ filled }) => <svg width="14" height="14" viewBox="0 0 24 24" fill={filled ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>;
+
+        // --- COMPONENTS ---
+
+        const CustomCursor = () => {
+            useEffect(() => {
+                const cursor = document.getElementById('cursor');
+                if (!cursor) return;
+                const moveCursor = (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; };
+                const addHover = () => cursor.classList.add('hovered');
+                const removeHover = () => cursor.classList.remove('hovered');
+                
+                document.querySelectorAll('a, button, .hover-trigger').forEach(el => {
+                    el.addEventListener('mouseenter', addHover);
+                    el.addEventListener('mouseleave', removeHover);
+                });
+                window.addEventListener('mousemove', moveCursor);
+                return () => window.removeEventListener('mousemove', moveCursor);
+            }, []);
+            return <div id="cursor"></div>;
+        };
+
+        const Reveal = ({ children, delay = 0 }) => {
+            const ref = useRef(null);
+            useEffect(() => {
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => { if (ref.current) ref.current.classList.add('visible'); }, delay);
+                    }
+                }, { threshold: 0.1 });
+                if (ref.current) observer.observe(ref.current);
+                return () => observer.disconnect();
+            }, [delay]);
+            return <div ref={ref} className="reveal-text">{children}</div>;
+        };
+
+        const Rating = ({ score, active }) => {
+            return (
+                <div className="flex gap-1.5">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                        <span key={i} className={i <= score ? (active ? "text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" : "text-zinc-500") : "text-zinc-900"}>
+                            <Star filled={i <= score} />
+                        </span>
+                    ))}
+                </div>
+            );
+        };
+
+        const ComparisonTable = () => {
+            const data = [
+                { label: "Vitesse (itérations)", gendash: 5, photoshop: 2 },
+                { label: "Courbe d’apprentissage", gendash: 5, photoshop: 2 },
+                { label: "Cohérence UI", gendash: 5, photoshop: 3 },
+                { label: "Personnalisation", gendash: 4, photoshop: 5 },
+                { label: "Export HD prêt réseau", gendash: 5, photoshop: 4 },
+                { label: "Créa 100% sur-mesure", gendash: 2, photoshop: 5 },
+                { label: "Reproductible (séries)", gendash: 5, photoshop: 2 },
+            ];
+
+            return (
+                <div className="my-16">
+                    {/* Desktop Headers */}
+                    <div className="hidden md:grid grid-cols-12 items-end pb-4 px-6 gap-6">
+                        <div className="col-span-4 text-xs font-bold uppercase tracking-widest text-zinc-500">Critère</div>
+                        <div className="col-span-4 text-center">
+                            <div className="inline-block px-4 py-1 rounded-t-lg bg-white/5 border-t border-x border-white/10">
+                                <span className="font-display font-bold text-white tracking-wide">GENDASH</span>
+                            </div>
+                        </div>
+                        <div className="col-span-4 text-center">
+                            <span className="font-display font-bold text-zinc-600 tracking-wide text-sm">PHOTOSHOP</span>
+                        </div>
+                    </div>
+
+                    {/* Table Container */}
+                    <div className="border border-white/10 rounded-2xl bg-[#0A0A0A] overflow-hidden relative shadow-2xl shadow-black">
+                        {/* Gendash Column Highlight - Desktop */}
+                        <div className="absolute top-0 bottom-0 left-0 right-0 md:left-1/3 md:right-1/3 bg-white/[0.03] border-x border-white/5 pointer-events-none hidden md:block z-0"></div>
+
+                        <div className="divide-y divide-white/5 relative z-10">
+                            {data.map((row, i) => (
+                                <div key={i} className="grid grid-cols-1 md:grid-cols-12 group">
+                                    {/* Label */}
+                                    <div className="col-span-4 p-5 md:py-6 flex items-center">
+                                        <span className="text-sm font-medium text-zinc-300 group-hover:text-white transition-colors">{row.label}</span>
+                                    </div>
+                                    
+                                    {/* Gendash Score */}
+                                    <div className="col-span-4 p-5 md:py-6 flex items-center justify-between md:justify-center bg-white/[0.03] md:bg-transparent border-y border-white/5 md:border-none">
+                                        <span className="md:hidden text-xs font-bold uppercase text-white tracking-widest">Gendash</span>
+                                        <div className="scale-110">
+                                            <Rating score={row.gendash} active={true} />
+                                        </div>
+                                    </div>
+
+                                    {/* Photoshop Score */}
+                                    <div className="col-span-4 p-5 md:py-6 flex items-center justify-between md:justify-center">
+                                        <span className="md:hidden text-xs font-bold uppercase text-zinc-600 tracking-widest">Photoshop</span>
+                                        <Rating score={row.photoshop} active={false} />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const FAQItem = ({ question, answer }) => {
+            const [isOpen, setIsOpen] = useState(false);
+            return (
+                <div className="border-b border-white/10 cursor-pointer hover-trigger group" onClick={() => setIsOpen(!isOpen)}>
+                    <div className="py-6 flex justify-between items-center">
+                        <h3 className="text-lg font-display font-semibold text-white group-hover:text-zinc-300 transition-colors pr-8 m-0 !mt-0 !mb-0">{question}</h3>
+                        <div className="text-zinc-500 group-hover:text-white transition-colors flex-shrink-0">
+                            {isOpen ? <Minus /> : <Plus />}
+                        </div>
+                    </div>
+                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0'}`}>
+                        <p className="text-zinc-400 font-light leading-relaxed m-0">{answer}</p>
+                    </div>
+                </div>
+            );
+        };
+
+        const Button = ({ children, primary, onClick, href }) => {
+            const className = `inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 hover-trigger ${
+                primary 
+                ? 'bg-white text-black hover:bg-zinc-200' 
+                : 'border border-white/20 text-white hover:bg-white/10'
+            }`;
+            
+            if (href) return <a href={href} className={className}>{children}</a>;
+            return <button onClick={onClick} className={className}>{children}</button>;
+        };
+
+        const Navbar = () => (
+            <nav className="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
+                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                    <a href="https://gendash.fr" className="font-display font-bold text-2xl tracking-tighter text-white hover-trigger">
+                        GENDASH<span className="text-zinc-500">.</span>
+                    </a>
+                    <div className="hidden md:flex gap-8">
+                    </div>
+                    <Button primary href="https://gendash.fr">Générer une maquette</Button>
+                </div>
+            </nav>
+        );
+
+        const Footer = () => (
+            <footer className="py-20 px-6 border-t border-white/10 bg-[#020202] z-10 relative">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+                    <div className="flex flex-col gap-6 max-w-xs">
+                        <h2 className="text-3xl font-display font-bold tracking-tighter select-none">GENDASH</h2>
+                        <p className="text-zinc-500 text-sm leading-relaxed">
+                            La référence en matière de preuve sociale visuelle. Dominez votre marché avec des outils d'élite.
+                        </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-20">
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Socials</h3>
+                            <a href="https://www.instagram.com/gendashboard/?igsh=YWVjejk2cjlkd2N5#" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Instagram</a>
+                            <a href="https://www.tiktok.com/@gendash.fr" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">TikTok</a>
+                            <a href="blog.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Blog</a>
+                        </div>
+                        
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Légal</h3>
+                            <a href="mentionslegales.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Mentions Légales</a>
+                            <a href="confidentialite.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Confidentialité</a>
+                            <a href="cgv.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">CGV</a>
+                        </div>
+                        
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Société</h3>
+                            <a href="pdg.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">PDG</a>
+                            <a href="support.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Support</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-[10px] text-zinc-600 uppercase tracking-widest">© 2024 GENDASH PRO. All rights reserved.</p>
+                    <div className="flex gap-4">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-[10px] text-zinc-500 uppercase tracking-widest">System Operational</span>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        // --- MAIN ARTICLE PAGE ---
+
+        const ArticlePage = () => {
+            return (
+                <div className="bg-black min-h-screen relative overflow-hidden">
+                    <div className="fixed inset-0 bg-noise opacity-30 pointer-events-none z-0"></div>
+                    <CustomCursor />
+                    <Navbar />
+
+                    <main className="relative z-10 pt-32 pb-24 px-6">
+                        <article className="max-w-3xl mx-auto">
+                            
+                            {/* Header Article */}
+                            <Reveal>
+                                <div className="mb-12">
+                                    <span className="text-sm font-medium text-zinc-500 border border-white/10 rounded-full px-3 py-1 mb-6 inline-block">Comparatif 2025</span>
+                                    <h1 className="font-display font-bold text-3xl md:text-5xl leading-tight mb-6">
+                                        Comparatif 2025 : Gendash vs Photoshop pour créer une maquette de dashboard (Stripe/Shopify) rapidement
+                                    </h1>
+                                    <div className="flex items-center gap-4 text-zinc-500 text-sm">
+                                        <span>Par l'équipe Gendash</span>
+                                        <span className="w-1 h-1 bg-zinc-700 rounded-full"></span>
+                                        <span>5 min de lecture</span>
+                                        <span className="w-1 h-1 bg-zinc-700 rounded-full"></span>
+                                        <span>Mis à jour Janvier 2025</span>
+                                    </div>
+                                </div>
+                            </Reveal>
+
+                            {/* Introduction (PAS) */}
+                            <div className="blog-content">
+                                <Reveal delay={100}>
+                                    <p className="text-xl md:text-2xl text-white font-light leading-relaxed mb-8">
+                                        Tu veux un visuel de dashboard pro pour une vidéo, une démo, une landing page, un pitch ou du contenu social.
+                                        Le problème : Photoshop peut tout faire… mais te fait perdre un temps fou dès que tu dois itérer.
+                                    </p>
+                                    <div className="highlight-box">
+                                        <strong className="block text-white mb-2">La solution :</strong>
+                                        <p className="!mb-0">Choisir l’outil selon ton objectif — production rapide (Gendash) ou contrôle absolu (Photoshop).</p>
+                                    </div>
+                                    
+                                    <h3 className="text-white mt-8 mb-4">Verdict rapide</h3>
+                                    <div className="grid md:grid-cols-2 gap-4 mb-8">
+                                        <div className="bg-white/5 p-4 rounded border border-white/10">
+                                            <div className="text-sm text-zinc-400 mb-1">Tu veux sortir des visuels en série, cohérents, rapidement</div>
+                                            <div className="flex items-center gap-2 font-bold text-white"><ArrowRight /> Gendash</div>
+                                        </div>
+                                        <div className="bg-white/5 p-4 rounded border border-white/10">
+                                            <div className="text-sm text-zinc-400 mb-1">Tu veux un contrôle pixel par pixel sur une créa unique</div>
+                                            <div className="flex items-center gap-2 font-bold text-white"><ArrowRight /> Photoshop</div>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* Comparison Table */}
+                                <Reveal delay={200}>
+                                    <h2>Comparatif express</h2>
+                                    <ComparisonTable />
+                                </Reveal>
+
+                                {/* H2 - Gendash */}
+                                <Reveal delay={300}>
+                                    <h2>Gendash : pour produire vite, propre, cohérent</h2>
+                                    
+                                    <h3>Points forts</h3>
+                                    <ul>
+                                        <li><strong>Workflow créateur :</strong> tu génères des variantes sans reconstruire une maquette à chaque fois.</li>
+                                        <li><strong>Cohérence instantanée :</strong> spacing, typographie, layout — tout “tombe juste”.</li>
+                                        <li><strong>Production en volume :</strong> idéal si tu fais du contenu régulier (YT/TikTok/IG), des pages, des miniatures.</li>
+                                    </ul>
+
+                                    <h3>Points faibles</h3>
+                                    <ul>
+                                        <li>Moins adapté si tu veux une création “artistique” totalement unique.</li>
+                                        <li>Tu es dans un cadre/template : c’est un avantage pour la cohérence, une limite pour l’extrême sur-mesure.</li>
+                                    </ul>
+                                </Reveal>
+
+                                {/* H2 - Photoshop */}
+                                <Reveal delay={300}>
+                                    <h2>Photoshop : pour le contrôle total (mais lent)</h2>
+                                    
+                                    <h3>Points forts</h3>
+                                    <ul>
+                                        <li><strong>Liberté absolue :</strong> tu peux tout modifier, tout inventer, tout composer.</li>
+                                        <li><strong>Cas spéciaux :</strong> visuels marketing complexes, montage, style graphique, compositing.</li>
+                                    </ul>
+
+                                    <h3>Points faibles</h3>
+                                    <ul>
+                                        <li><strong>Temps :</strong> dès que tu veux 10 versions (devises, dates, périodes), tu doubles ton taf.</li>
+                                        <li><strong>Détails UI :</strong> si tu ne maîtrises pas, tu obtiens vite un rendu “pas net” (typo, arrondis, alignements).</li>
+                                        <li><strong>Maintenance :</strong> refaire / mettre à jour une maquette = encore du temps.</li>
+                                    </ul>
+                                </Reveal>
+
+                                {/* H2 - Le vrai critère */}
+                                <Reveal delay={300}>
+                                    <h2>Le vrai critère : “1 visuel” vs “20 variantes”</h2>
+                                    <div className="space-y-6">
+                                        <div className="bg-zinc-900/50 p-6 rounded-lg border-l-2 border-zinc-700">
+                                            <h4 className="text-white font-bold mb-2">Si tu veux 1 seul visuel parfait</h4>
+                                            <p className="!mb-0 text-sm"><ArrowRight className="inline mr-2"/> Photoshop peut gagner, si tu sais déjà faire.</p>
+                                        </div>
+                                        <div className="bg-zinc-900/50 p-6 rounded-lg border-l-2 border-white">
+                                            <h4 className="text-white font-bold mb-2">Si tu veux publier souvent et itérer</h4>
+                                            <p className="!mb-0 text-sm"><ArrowRight className="inline mr-2"/> Gendash gagne : tu vas plus vite, plus propre, plus régulier.</p>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* H2 - Scénarios */}
+                                <Reveal delay={300}>
+                                    <h2>Scénarios concrets</h2>
+                                    <div className="grid gap-6 mt-6">
+                                        <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                                            <h4 className="text-white font-bold mb-2">Scénario A : Créateur de contenu (YouTube/TikTok)</h4>
+                                            <p className="text-sm text-zinc-400 mb-4">Objectif : visuels rapides, cohérents, “premium”.</p>
+                                            <div className="flex items-center gap-2 font-bold text-white text-sm bg-white/10 w-fit px-3 py-1 rounded-full"><Check /> Gendash (templates + variations + export)</div>
+                                        </div>
+                                        <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                                            <h4 className="text-white font-bold mb-2">Scénario B : Landing page / présentation / pitch</h4>
+                                            <p className="text-sm text-zinc-400 mb-4">Objectif : montrer une interface / un concept clairement.</p>
+                                            <div className="flex items-center gap-2 font-bold text-white text-sm bg-white/10 w-fit px-3 py-1 rounded-full"><Check /> Gendash, puis retouche légère si besoin</div>
+                                        </div>
+                                        <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+                                            <h4 className="text-white font-bold mb-2">Scénario C : Campagne marketing très stylisée</h4>
+                                            <p className="text-sm text-zinc-400 mb-4">Objectif : montage complexe + direction artistique forte.</p>
+                                            <div className="flex items-center gap-2 font-bold text-white text-sm bg-white/10 w-fit px-3 py-1 rounded-full"><Check /> Photoshop (ou PS + assets générés ailleurs)</div>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* H2 - Bonnes pratiques */}
+                                <Reveal delay={300}>
+                                    <h2>Bonnes pratiques (pour rester clean)</h2>
+                                    <ul>
+                                        <li>Présente tes visuels comme simulation / démo / exemple.</li>
+                                        <li>Utilise-les pour illustrer, pas pour prétendre “prouver”.</li>
+                                        <li>Garde une cohérence : chiffres réalistes, courbes non “magiques”, périodes plausibles.</li>
+                                    </ul>
+                                </Reveal>
+                            </div>
+                        </article>
+
+                        {/* FAQ Section */}
+                        <section id="faq" className="max-w-3xl mx-auto mt-24 pt-24 border-t border-white/10">
+                            <Reveal>
+                                <h2 className="font-display font-bold text-3xl md:text-4xl mb-12">Questions fréquentes</h2>
+                                <div className="space-y-2">
+                                    <FAQItem 
+                                        question="Quel est le plus réaliste ?" 
+                                        answer="Les deux peuvent être très propres. La différence, c’est que Gendash vise le rendu cohérent rapidement, Photoshop vise le contrôle total." 
+                                    />
+                                    <FAQItem 
+                                        question="Quel est le plus rentable en temps ?" 
+                                        answer="Si tu fais plus de 2–3 variantes, Gendash devient vite imbattable." 
+                                    />
+                                </div>
+                            </Reveal>
+                        </section>
+
+                        {/* Conclusion CTA */}
+                        <section className="max-w-3xl mx-auto mt-24 text-center">
+                            <Reveal>
+                                <div className="bg-gradient-to-b from-white/10 to-transparent p-1 rounded-2xl">
+                                    <div className="bg-black/80 backdrop-blur rounded-xl p-12 border border-white/10">
+                                        <h2 className="font-display font-bold text-3xl mb-4">Conclusion</h2>
+                                        <p className="text-zinc-400 mb-8 max-w-lg mx-auto">
+                                            Si ton objectif c’est de produire vite, propre, et publier régulièrement : <strong>Gendash</strong>.<br/>
+                                            Si ton objectif c’est une créa unique, ultra sur-mesure, avec contrôle total : <strong>Photoshop</strong>.
+                                        </p>
+                                        <Button primary href="https://gendash.fr">Créer une maquette maintenant <ArrowRight /></Button>
+                                    </div>
+                                </div>
+                            </Reveal>
+                        </section>
+
+                    </main>
+
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ArticlePage />);
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

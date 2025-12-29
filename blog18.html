@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-black">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO META -->
+    <title>L’impact psychologique des gros chiffres sur la vente de cours en ligne (et comment l’utiliser clean)</title>
+    <meta name="description" content="Les gros chiffres augmentent les conversions car ils réduisent le doute, créent de l’autorité et déclenchent des raccourcis mentaux. Mais mal utilisés, ils détruisent la confiance. Guide + méthode clean avec démos (GendashPro)." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://gendash.pro/blog/impact-psychologique-gros-chiffres-vente-cours-en-ligne" />
+    <meta name="theme-color" content="#050505" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="L’impact psychologique des gros chiffres sur la vente de cours en ligne" />
+    <meta property="og:description" content="Pourquoi les gros chiffres vendent, pourquoi ils peuvent détruire votre réputation, et comment les utiliser éthiquement." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://gendash.pro/blog/impact-psychologique-gros-chiffres-vente-cours-en-ligne" />
+    
+    <!-- Core Libs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        black: '#050505',
+                        white: '#EAEAEA',
+                        brand: '#6366f1',
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\" opacity=\"0.05\"/%3E%3C/svg%3E')",
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #EAEAEA; overflow-x: hidden; }
+        ::selection { background: #EAEAEA; color: #050505; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* Custom Cursor */
+        #cursor {
+            position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+            border: 1px solid white; border-radius: 50%; pointer-events: none;
+            z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            display: none;
+        }
+        @media (hover: hover) { #cursor { display: block; } }
+        #cursor.hovered { width: 60px; height: 60px; background-color: white; border: none; }
+
+        .reveal-text { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal-text.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Blog Typography */
+        .blog-content p { margin-bottom: 1.5rem; line-height: 1.8; color: #a1a1aa; font-weight: 300; font-size: 1.125rem; }
+        .blog-content h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 2rem; color: #fff; margin-top: 3.5rem; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .blog-content h3 { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.5rem; color: #fff; margin-top: 2rem; margin-bottom: 1rem; }
+        .blog-content strong { color: #fff; font-weight: 600; }
+        .blog-content ul { margin-bottom: 1.5rem; padding-left: 0.5rem; color: #a1a1aa; }
+        .blog-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #a1a1aa; }
+        
+        /* SVG List Bullet */
+        .blog-content ul li { margin-bottom: 0.75rem; position: relative; padding-left: 1.5rem; line-height: 1.7; }
+        .blog-content ul li::before { 
+            content: ""; 
+            position: absolute; 
+            left: 0; 
+            top: 11px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+        
+        .highlight-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.5rem; border-radius: 0.5rem; margin: 2rem 0; }
+        .alert-box { border-left: 3px solid #f87171; background: rgba(248, 113, 113, 0.05); padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0; }
+        .alert-title { color: #f87171; font-weight: 600; margin-bottom: 0.5rem; display: block; }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- ICONS ---
+        const ArrowRight = ({ className }) => <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>;
+        const Play = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>;
+        const Warning = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>;
+        const Check = ({ className }) => <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>;
+        const XCircle = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>;
+        const Anchor = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>;
+        const Signal = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 20V4"/></svg>;
+        const Shield = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>;
+        const Target = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>;
+
+        // --- COMPONENTS ---
+
+        const CustomCursor = () => {
+            useEffect(() => {
+                const cursor = document.getElementById('cursor');
+                if (!cursor) return;
+                const moveCursor = (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; };
+                const addHover = () => cursor.classList.add('hovered');
+                const removeHover = () => cursor.classList.remove('hovered');
+                
+                document.querySelectorAll('a, button, .hover-trigger').forEach(el => {
+                    el.addEventListener('mouseenter', addHover);
+                    el.addEventListener('mouseleave', removeHover);
+                });
+                window.addEventListener('mousemove', moveCursor);
+                return () => window.removeEventListener('mousemove', moveCursor);
+            }, []);
+            return <div id="cursor"></div>;
+        };
+
+        const Reveal = ({ children, delay = 0 }) => {
+            const ref = useRef(null);
+            useEffect(() => {
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => { if (ref.current) ref.current.classList.add('visible'); }, delay);
+                    }
+                }, { threshold: 0.1 });
+                if (ref.current) observer.observe(ref.current);
+                return () => observer.disconnect();
+            }, [delay]);
+            return <div ref={ref} className="reveal-text">{children}</div>;
+        };
+
+        const Button = ({ children, primary, onClick, href, target }) => {
+            const className = `inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 hover-trigger ${
+                primary 
+                ? 'bg-white text-black hover:bg-zinc-200' 
+                : 'border border-white/20 text-white hover:bg-white/10'
+            }`;
+            
+            if (href) return <a href={href} target={target} className={className}>{children}</a>;
+            return <button onClick={onClick} className={className}>{children}</button>;
+        };
+
+        const Navbar = () => (
+            <nav className="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
+                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                    <a href="https://gendash.fr" className="font-display font-bold text-2xl tracking-tighter text-white hover-trigger">
+                        GENDASH<span className="text-zinc-500">.</span>
+                    </a>
+                    <div className="hidden md:flex gap-8">
+                    </div>
+                    <Button primary href="https://gendash.fr">Générer une maquette</Button>
+                </div>
+            </nav>
+        );
+
+        const Footer = () => (
+            <footer className="py-20 px-6 border-t border-white/10 bg-[#020202] z-10 relative">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+                    <div className="flex flex-col gap-6 max-w-xs">
+                        <h2 className="text-3xl font-display font-bold tracking-tighter select-none">GENDASH</h2>
+                        <p className="text-zinc-500 text-sm leading-relaxed">
+                            La référence en matière de preuve sociale visuelle. Dominez votre marché avec des outils d'élite.
+                        </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-20">
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Socials</h3>
+                            <a href="https://www.instagram.com/gendashboard/?igsh=YWVjejk2cjlkd2N5#" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Instagram</a>
+                            <a href="https://www.tiktok.com/@gendash.fr" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">TikTok</a>
+                            <a href="blog.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Blog</a>
+                        </div>
+                        
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Légal</h3>
+                            <a href="mentionslegales.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Mentions Légales</a>
+                            <a href="confidentialite.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Confidentialité</a>
+                            <a href="cgv.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">CGV</a>
+                        </div>
+                        
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Société</h3>
+                            <a href="pdg.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">PDG</a>
+                            <a href="support.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Support</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-[10px] text-zinc-600 uppercase tracking-widest">© 2024 GENDASH PRO. All rights reserved.</p>
+                    <div className="flex gap-4">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-[10px] text-zinc-500 uppercase tracking-widest">System Operational</span>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        // --- MAIN ARTICLE PAGE ---
+
+        const ArticlePage = () => {
+            return (
+                <div className="bg-black min-h-screen relative overflow-hidden">
+                    <div className="fixed inset-0 bg-noise opacity-30 pointer-events-none z-0"></div>
+                    <CustomCursor />
+                    <Navbar />
+
+                    <main className="relative z-10 pt-32 pb-24 px-6">
+                        <article className="max-w-3xl mx-auto">
+                            
+                            {/* Header Article */}
+                            <Reveal>
+                                <div className="mb-12">
+                                    <span className="text-sm font-medium text-zinc-500 border border-white/10 rounded-full px-3 py-1 mb-6 inline-block">Psychologie & Vente</span>
+                                    <h1 className="font-display font-bold text-3xl md:text-5xl leading-tight mb-6">
+                                        L’impact psychologique des gros chiffres sur la vente de cours en ligne
+                                    </h1>
+                                    <div className="flex items-center gap-4 text-zinc-500 text-sm">
+                                        <span>Par l'équipe Gendash</span>
+                                        <span className="w-1 h-1 bg-zinc-700 rounded-full"></span>
+                                        <span>5 min de lecture</span>
+                                        <span className="w-1 h-1 bg-zinc-700 rounded-full"></span>
+                                        <span>Mis à jour Janvier 2025</span>
+                                    </div>
+                                </div>
+                            </Reveal>
+
+                            {/* Intro */}
+                            <div className="blog-content">
+                                <Reveal delay={100}>
+                                    <p className="text-xl md:text-2xl text-white font-light leading-relaxed mb-8">
+                                        Un “gros chiffre” a un pouvoir immédiat : il capte l’attention et change la perception. Dans la vente de formations, c’est un raccourci mental puissant.
+                                    </p>
+                                    
+                                    <div className="bg-white/5 p-6 rounded border border-white/10 mb-8">
+                                        <p className="!mb-0 text-sm text-zinc-400">
+                                            Mais attention : le même levier peut faire vendre… ou te détruire selon comment tu l’utilises. Voici comment maîtriser cet impact sans tomber dans le piège du "Fake Guru".
+                                        </p>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 1 - Why it works (Mechanisms) */}
+                                <Reveal delay={200}>
+                                    <h2>1) Pourquoi les gros chiffres “marchent”</h2>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                                        <div className="bg-zinc-900 border border-white/5 p-6 rounded-lg">
+                                            <Target className="w-6 h-6 text-brand mb-3" />
+                                            <strong className="text-white block mb-1">Autorité instantanée</strong>
+                                            <p className="text-sm text-zinc-400 !mb-0">"10 000 élèves" ou "1M de vues" crée l'impression immédiate que tu sais ce que tu fais.</p>
+                                        </div>
+                                        <div className="bg-zinc-900 border border-white/5 p-6 rounded-lg">
+                                            <Signal className="w-6 h-6 text-brand mb-3" />
+                                            <strong className="text-white block mb-1">Signal de qualité</strong>
+                                            <p className="text-sm text-zinc-400 !mb-0">Si beaucoup ont payé, le cerveau déduit que ça doit être utile. C'est un signal, pas une preuve mathématique.</p>
+                                        </div>
+                                        <div className="bg-zinc-900 border border-white/5 p-6 rounded-lg">
+                                            <Shield className="w-6 h-6 text-brand mb-3" />
+                                            <strong className="text-white block mb-1">Réduction du risque</strong>
+                                            <p className="text-sm text-zinc-400 !mb-0">Acheter est un risque. Le gros chiffre agit comme un tampon : "Je ne suis pas le premier".</p>
+                                        </div>
+                                        <div className="bg-zinc-900 border border-white/5 p-6 rounded-lg">
+                                            <Anchor className="w-6 h-6 text-brand mb-3" />
+                                            <strong className="text-white block mb-1">Ancrage Prix</strong>
+                                            <p className="text-sm text-zinc-400 !mb-0">Si tu annonces "+200k€ générés", ta formation à 199€ paraît soudainement très accessible.</p>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 2 & 3 - The Trap */}
+                                <Reveal delay={300}>
+                                    <h2>2) Pourquoi ça marche (surtout en formation)</h2>
+                                    <p>Parce que tu vends une promesse (temps, argent, changement). Ton audience cherche désespérément des signaux de réussite.</p>
+
+                                    <h2>3) Le piège : Le "Fake Guru"</h2>
+                                    <div className="alert-box my-6">
+                                        <span className="alert-title flex items-center gap-2"><Warning className="w-5 h-5"/> Attention au retour de bâton</span>
+                                        <p className="!mb-0 text-sm text-zinc-300">
+                                            À force d’abus, le public s’est blindé. Plus ton chiffre est gros, plus la méfiance augmente ("C'est brut ou net ?", "C'est vérifiable ?"). Sans réponse, tu perds tout.
+                                        </p>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 4 - Clean vs Danger */}
+                                <Reveal delay={300}>
+                                    <h2>4) La ligne propre : “chiffres” vs “preuves”</h2>
+                                    <div className="grid md:grid-cols-2 gap-6 my-6">
+                                        <div className="bg-green-500/5 p-6 rounded-lg border border-green-500/20">
+                                            <strong className="text-green-500 block mb-4 text-sm uppercase">✅ Ce qui est Clean</strong>
+                                            <ul className="text-sm text-zinc-300 space-y-3 pl-0">
+                                                <li className="flex gap-2"><Check className="text-green-500 w-4 h-4"/> Chiffres d’usage (élèves, templates)</li>
+                                                <li className="flex gap-2"><Check className="text-green-500 w-4 h-4"/> Chiffres contextualisés (source, période)</li>
+                                                <li className="flex gap-2"><Check className="text-green-500 w-4 h-4"/> Résultats avec nuances</li>
+                                            </ul>
+                                            <p className="text-xs text-green-400 mt-4 border-t border-green-500/20 pt-3">Un chiffre clean informe.</p>
+                                        </div>
+
+                                        <div className="bg-red-500/5 p-6 rounded-lg border border-red-500/20">
+                                            <strong className="text-red-500 block mb-4 text-sm uppercase">❌ Ce qui est Dangereux</strong>
+                                            <ul className="text-sm text-zinc-300 space-y-3 pl-0">
+                                                <li className="flex gap-2"><XCircle className="text-red-500 w-4 h-4"/> Preuves financières sans contexte</li>
+                                                <li className="flex gap-2"><XCircle className="text-red-500 w-4 h-4"/> "Gains garantis"</li>
+                                                <li className="flex gap-2"><XCircle className="text-red-500 w-4 h-4"/> Screenshots présentés comme réels</li>
+                                            </ul>
+                                            <p className="text-xs text-red-400 mt-4 border-t border-red-500/20 pt-3">Un chiffre toxique manipule.</p>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 5 - Method */}
+                                <Reveal delay={300}>
+                                    <h2>5) Comment utiliser les gros chiffres sans te cramer</h2>
+                                    <div className="space-y-4 my-6">
+                                        <div className="bg-zinc-900 p-4 rounded border-l-2 border-brand">
+                                            <strong className="text-white block">Étape 1 — Remplace “revenus” par “progression”</strong>
+                                            <span className="text-sm text-zinc-400">Vends sur "j'ai construit un système" ou "j'ai transformé X en Y étapes", pas juste sur l'argent.</span>
+                                        </div>
+                                        <div className="bg-zinc-900 p-4 rounded border-l-2 border-brand">
+                                            <strong className="text-white block">Étape 2 — Utilise des chiffres “structurels”</strong>
+                                            <span className="text-sm text-zinc-400">Nombre de modules, de templates, d'exemples. Ça rassure sur la solidité du produit.</span>
+                                        </div>
+                                        <div className="bg-zinc-900 p-4 rounded border-l-2 border-brand">
+                                            <strong className="text-white block">Étape 3 — Prouve par la démonstration</strong>
+                                            <span className="text-sm text-zinc-400">Les gens veulent VOIR le système. La démo visuelle premium est ton arme.</span>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 6 - GendashPro Role */}
+                                <Reveal delay={300}>
+                                    <h2>6) Où GendashPro devient un levier intelligent</h2>
+                                    <p>GendashPro sert à transformer “je dis” en “je montre” sans prétendre que c’est un relevé réel.</p>
+                                    <div className="bg-white/5 p-6 rounded-lg my-6">
+                                        <p className="text-sm text-zinc-300 !mb-4">
+                                            Tu peux l’utiliser pour illustrer une situation business, mettre en scène un reporting exemple, ou rendre tes pages plus crédibles.
+                                        </p>
+                                        <div className="flex gap-4 text-xs font-bold uppercase tracking-wide">
+                                            <span className="text-green-500">✅ Démo / Simulation</span>
+                                            <span className="text-red-500">❌ Preuve Réelle</span>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 7 - Formulations */}
+                                <Reveal delay={300}>
+                                    <h2>7) Les 7 formulations qui vendent fort (sans mentir)</h2>
+                                    <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-lg space-y-3 my-6">
+                                        {[
+                                            "Voici le système exact que j’utilise, étape par étape.",
+                                            "Tu vois le process, pas juste un résultat.",
+                                            "Exemples concrets + templates + mise en pratique.",
+                                            "Tu repars avec une méthode utilisable dès ce soir.",
+                                            "Pas de promesse magique : du framework, du concret.",
+                                            "Démo complète : tu vois ce que tu vas faire avant d’acheter.",
+                                            "Ce que tu payes, c’est la clarté + la structure."
+                                        ].map((txt, i) => (
+                                            <div key={i} className="flex items-start gap-3">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-brand mt-2 shrink-0"></div>
+                                                <span className="text-sm text-zinc-300 italic">"{txt}"</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 8 - FAQ */}
+                                <Reveal delay={300}>
+                                    <h2>FAQ Rapide</h2>
+                                    <div className="space-y-6">
+                                        <div>
+                                            <h3 className="text-white text-lg !mt-0 !mb-2">Est-ce que les gros chiffres augmentent vraiment la conversion ?</h3>
+                                            <p className="text-sm text-zinc-400 !mb-0">Oui, à cause de l'autorité et de l'ancrage. Mais sans contexte, ils augmentent aussi la méfiance.</p>
+                                        </div>
+                                        <div>
+                                            <h3 className="text-white text-lg !mt-0 !mb-2">Je fais quoi si je suis débutant ?</h3>
+                                            <p className="text-sm text-zinc-400 !mb-0">Tu joues sur la preuve de process, la démo, la structure et les cas concrets. Pas sur les "revenus".</p>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                            </div>
+                        </article>
+
+                        {/* Conclusion CTA */}
+                        <section className="max-w-3xl mx-auto mt-24 text-center">
+                            <Reveal>
+                                <div className="bg-gradient-to-b from-white/10 to-transparent p-1 rounded-2xl">
+                                    <div className="bg-black/80 backdrop-blur rounded-xl p-12 border border-white/10">
+                                        <h2 className="font-display font-bold text-3xl mb-4">Passez à la vitesse supérieure</h2>
+                                        <p className="text-zinc-400 mb-8 max-w-lg mx-auto">
+                                            Les gros chiffres vendent parce qu’ils agissent comme un signal psychologique. Utilisez GendashPro pour créer ces signaux proprement.
+                                        </p>
+                                        <div className="flex flex-col md:flex-row gap-4 justify-center">
+                                            <Button primary href="https://gendash.fr">Accéder à GendashPro <ArrowRight /></Button>
+                                            <Button href="https://www.youtube.com/@gendashfr" target="_blank"><Play className="w-4 h-4"/> Voir les tutos YouTube</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Reveal>
+                        </section>
+
+                    </main>
+
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ArticlePage />);
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

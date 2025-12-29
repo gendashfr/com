@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-black">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO META -->
+    <title>Top 5 sites pour créer des captures d’écran Shopify réalistes en 2025 (maquettes & démos)</title>
+    <meta name="description" content="Top 5 des meilleurs sites en 2025 pour obtenir des visuels Shopify réalistes : générateurs de maquettes, dev stores Shopify, UI kits Figma (Polaris), Canva, et outils de frames pro." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://gendash.pro/blog/top-5-captures-ecran-shopify-realistes-2025" />
+    <meta name="theme-color" content="#050505" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Top 5 sites pour créer des captures d’écran Shopify réalistes en 2025" />
+    <meta property="og:description" content="Découvrez les meilleurs outils pour vos visuels Shopify : Gendash, Dev Stores, Figma et plus." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://gendash.pro/blog/top-5-captures-ecran-shopify-realistes-2025" />
+    
+    <!-- Core Libs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        black: '#050505',
+                        white: '#EAEAEA',
+                        brand: '#6366f1',
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\" opacity=\"0.05\"/%3E%3C/svg%3E')",
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #EAEAEA; overflow-x: hidden; }
+        ::selection { background: #EAEAEA; color: #050505; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* Custom Cursor */
+        #cursor {
+            position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+            border: 1px solid white; border-radius: 50%; pointer-events: none;
+            z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            display: none;
+        }
+        @media (hover: hover) { #cursor { display: block; } }
+        #cursor.hovered { width: 60px; height: 60px; background-color: white; border: none; }
+
+        .reveal-text { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal-text.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Blog Typography */
+        .blog-content p { margin-bottom: 1.5rem; line-height: 1.8; color: #a1a1aa; font-weight: 300; font-size: 1.125rem; }
+        .blog-content h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 2rem; color: #fff; margin-top: 3.5rem; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .blog-content h3 { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.5rem; color: #fff; margin-top: 2rem; margin-bottom: 1rem; }
+        .blog-content strong { color: #fff; font-weight: 600; }
+        .blog-content ul { margin-bottom: 1.5rem; padding-left: 0.5rem; color: #a1a1aa; }
+        
+        /* SVG List Bullet */
+        .blog-content li { margin-bottom: 0.75rem; position: relative; padding-left: 1.5rem; line-height: 1.7; }
+        .blog-content li::before { 
+            content: ""; 
+            position: absolute; 
+            left: 0; 
+            top: 11px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+        
+        .highlight-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.5rem; border-radius: 0.5rem; margin: 2rem 0; }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- ICONS ---
+        const Plus = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>;
+        const Minus = () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>;
+        const ArrowRight = ({ className }) => <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>;
+        const Check = ({ className }) => <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>;
+
+        // --- COMPONENTS ---
+
+        const CustomCursor = () => {
+            useEffect(() => {
+                const cursor = document.getElementById('cursor');
+                if (!cursor) return;
+                const moveCursor = (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; };
+                const addHover = () => cursor.classList.add('hovered');
+                const removeHover = () => cursor.classList.remove('hovered');
+                
+                document.querySelectorAll('a, button, .hover-trigger').forEach(el => {
+                    el.addEventListener('mouseenter', addHover);
+                    el.addEventListener('mouseleave', removeHover);
+                });
+                window.addEventListener('mousemove', moveCursor);
+                return () => window.removeEventListener('mousemove', moveCursor);
+            }, []);
+            return <div id="cursor"></div>;
+        };
+
+        const Reveal = ({ children, delay = 0 }) => {
+            const ref = useRef(null);
+            useEffect(() => {
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => { if (ref.current) ref.current.classList.add('visible'); }, delay);
+                    }
+                }, { threshold: 0.1 });
+                if (ref.current) observer.observe(ref.current);
+                return () => observer.disconnect();
+            }, [delay]);
+            return <div ref={ref} className="reveal-text">{children}</div>;
+        };
+
+        const FAQItem = ({ question, answer }) => {
+            const [isOpen, setIsOpen] = useState(false);
+            return (
+                <div className="border-b border-white/10 cursor-pointer hover-trigger group" onClick={() => setIsOpen(!isOpen)}>
+                    <div className="py-6 flex justify-between items-center">
+                        <h3 className="text-lg font-display font-semibold text-white group-hover:text-zinc-300 transition-colors pr-8 m-0 !mt-0 !mb-0">{question}</h3>
+                        <div className="text-zinc-500 group-hover:text-white transition-colors flex-shrink-0">
+                            {isOpen ? <Minus /> : <Plus />}
+                        </div>
+                    </div>
+                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96 opacity-100 mb-6' : 'max-h-0 opacity-0'}`}>
+                        <p className="text-zinc-400 font-light leading-relaxed m-0">{answer}</p>
+                    </div>
+                </div>
+            );
+        };
+
+        const Button = ({ children, primary, onClick, href }) => {
+            const className = `inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 hover-trigger ${
+                primary 
+                ? 'bg-white text-black hover:bg-zinc-200' 
+                : 'border border-white/20 text-white hover:bg-white/10'
+            }`;
+            
+            if (href) return <a href={href} className={className}>{children}</a>;
+            return <button onClick={onClick} className={className}>{children}</button>;
+        };
+
+        const Navbar = () => (
+            <nav className="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
+                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                    <a href="https://gendash.fr" className="font-display font-bold text-2xl tracking-tighter text-white hover-trigger">
+                        GENDASH<span className="text-zinc-500">.</span>
+                    </a>
+                    <div className="hidden md:flex gap-8">
+                    </div>
+                    <Button primary href="https://gendash.fr">Générer une maquette</Button>
+                </div>
+            </nav>
+        );
+
+        const Footer = () => (
+            <footer className="py-20 px-6 border-t border-white/10 bg-[#020202] z-10 relative">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+                    <div className="flex flex-col gap-6 max-w-xs">
+                        <h2 className="text-3xl font-display font-bold tracking-tighter select-none">GENDASH</h2>
+                        <p className="text-zinc-500 text-sm leading-relaxed">
+                            La référence en matière de preuve sociale visuelle. Dominez votre marché avec des outils d'élite.
+                        </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-20">
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Socials</h3>
+                            <a href="https://www.instagram.com/gendashboard/?igsh=YWVjejk2cjlkd2N5#" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Instagram</a>
+                            <a href="https://www.tiktok.com/@gendash.fr" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">TikTok</a>
+                            <a href="blog.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Blog</a>
+                        </div>
+                        
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Légal</h3>
+                            <a href="mentionslegales.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Mentions Légales</a>
+                            <a href="confidentialite.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Confidentialité</a>
+                            <a href="cgv.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">CGV</a>
+                        </div>
+                        
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Société</h3>
+                            <a href="pdg.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">PDG</a>
+                            <a href="support.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Support</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-[10px] text-zinc-600 uppercase tracking-widest">© 2024 GENDASH PRO. All rights reserved.</p>
+                    <div className="flex gap-4">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-[10px] text-zinc-500 uppercase tracking-widest">System Operational</span>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        // --- MAIN ARTICLE PAGE ---
+
+        const ArticlePage = () => {
+            return (
+                <div className="bg-black min-h-screen relative overflow-hidden">
+                    <div className="fixed inset-0 bg-noise opacity-30 pointer-events-none z-0"></div>
+                    <CustomCursor />
+                    <Navbar />
+
+                    <main className="relative z-10 pt-32 pb-24 px-6">
+                        <article className="max-w-3xl mx-auto">
+                            
+                            {/* Header Article */}
+                            <Reveal>
+                                <div className="mb-12">
+                                    <span className="text-sm font-medium text-zinc-500 border border-white/10 rounded-full px-3 py-1 mb-6 inline-block">Classement 2025</span>
+                                    <h1 className="font-display font-bold text-3xl md:text-5xl leading-tight mb-6">
+                                        Top 5 des sites pour générer des captures d’écran Shopify réalistes en 2025
+                                    </h1>
+                                    <div className="flex items-center gap-4 text-zinc-500 text-sm">
+                                        <span>Par l'équipe Gendash</span>
+                                        <span className="w-1 h-1 bg-zinc-700 rounded-full"></span>
+                                        <span>5 min de lecture</span>
+                                        <span className="w-1 h-1 bg-zinc-700 rounded-full"></span>
+                                        <span>Mis à jour Janvier 2025</span>
+                                    </div>
+                                </div>
+                            </Reveal>
+
+                            {/* Introduction */}
+                            <div className="blog-content">
+                                <Reveal delay={100}>
+                                    <p className="text-xl md:text-2xl text-white font-light leading-relaxed mb-8">
+                                        Tu veux une capture Shopify pro, nette, crédible. Pour une vidéo YouTube, une story TikTok, un tutoriel, un pitch deck, ou une landing page.
+                                    </p>
+                                    <p className="text-lg">
+                                        Le problème : la plupart des “screens” font fake… parce que les détails UI ne tiennent pas (typo, spacing, arrondis, hiérarchie, graph).
+                                        Ici, je te donne les 5 meilleurs sites (vraiment utiles), avec Gendash en #1 pour la majorité des créateurs.
+                                    </p>
+
+                                    {/* La règle d'or */}
+                                    <h2 className="text-white mt-12 mb-6">La règle d’or (pour un rendu vraiment réaliste)</h2>
+                                    <p>Un visuel Shopify “réaliste”, c’est :</p>
+                                    <ul>
+                                        <li>une grille cohérente (marges & alignements),</li>
+                                        <li>une typo qui matche,</li>
+                                        <li>des composants propres (badges, tabs, cards),</li>
+                                        <li>un graph crédible,</li>
+                                        <li>et un export net.</li>
+                                    </ul>
+                                    <div className="bg-zinc-900/50 p-6 rounded-lg border-l-2 border-white mb-12">
+                                        <p className="!mb-0 text-sm font-medium text-white">Tu peux l’obtenir de 2 façons :</p>
+                                        <ul className="!mb-0 mt-2 text-sm">
+                                            <li><strong>Maquette / simulation</strong> (rapide, scalable)</li>
+                                            <li><strong>Vraie capture</strong> depuis une boutique de dev (authentique, plus long)</li>
+                                        </ul>
+                                    </div>
+                                </Reveal>
+
+                                {/* 1) Gendash */}
+                                <Reveal delay={200}>
+                                    <h2>1) Gendash — Le meilleur choix “créateur” (rapide + cohérent)</h2>
+                                    <p>Si ton objectif c’est : publier vite, faire des variantes, garder un style premium… c’est là que Gendash gagne.</p>
+                                    
+                                    <h3>Pourquoi c’est #1 :</h3>
+                                    <ul>
+                                        <li><strong>Workflow instantané :</strong> tu passes de l’idée au visuel en minutes.</li>
+                                        <li><strong>Cohérence UI :</strong> rendu propre, lisible, “dashboard-ready”.</li>
+                                        <li><strong>Parfait pour le contenu :</strong> thumbnails, stories, pages marketing, démos.</li>
+                                    </ul>
+
+                                    <div className="highlight-box">
+                                        <strong className="block text-white mb-2">Idéal pour :</strong>
+                                        <p className="!mb-0">Créateurs de contenu (YT/TikTok/IG), landing pages, démonstrations, visuels de “scénario” (storytelling).</p>
+                                    </div>
+
+                                    <div className="my-8">
+                                        <Button primary href="https://gendash.fr">Générer une maquette Shopify maintenant <ArrowRight /></Button>
+                                    </div>
+                                </Reveal>
+
+                                {/* 2) Shopify Partners */}
+                                <Reveal delay={300}>
+                                    <h2>2) Shopify Partners Dev Store — La capture “100% réelle”</h2>
+                                    <p>Si tu veux le truc le plus “authentique” possible : tu crées une boutique de développement (dev store) via Shopify Partners, et tu fais tes captures depuis un vrai admin Shopify. Shopify explique que les dev stores servent à tester en environnement sûr, et les Partners peuvent en créer en nombre illimité.</p>
+                                    
+                                    <h3>Pourquoi c’est puissant :</h3>
+                                    <ul>
+                                        <li>C’est une vraie interface.</li>
+                                        <li>Parfaite pour les tutos “écran” et les démonstrations.</li>
+                                    </ul>
+
+                                    <h3>Le point faible :</h3>
+                                    <ul>
+                                        <li>C’est plus long (setup + contenu + scénarios).</li>
+                                    </ul>
+
+                                    <p className="text-sm italic">Idéal pour : tutoriels détaillés, cours / guides, contenus “screen recording”.</p>
+                                </Reveal>
+
+                                {/* 3) Polaris + Figma */}
+                                <Reveal delay={300}>
+                                    <h2>3) Shopify Polaris + Figma — La maquette “pixel clean”</h2>
+                                    <p>Shopify a son design system : Polaris. Et Shopify fournit des ressources Figma (UI kit, styles, icons) pour designer avec la “vibe Shopify” proprement.</p>
+                                    
+                                    <h3>Pourquoi c’est excellent :</h3>
+                                    <ul>
+                                        <li>Tu obtiens une maquette hyper cohérente (composants, spacing, style).</li>
+                                        <li>Parfait si tu veux créer un “dashboard-like” crédible sans improviser.</li>
+                                    </ul>
+
+                                    <h3>Le point faible :</h3>
+                                    <ul>
+                                        <li>Tu dois designer (même vite), donc moins “1-clic” que Gendash.</li>
+                                    </ul>
+
+                                    <p className="text-sm italic">Idéal pour : designers, présentations, UI preview, visuels très propres.</p>
+                                </Reveal>
+
+                                {/* 4) Canva */}
+                                <Reveal delay={300}>
+                                    <h2>4) Canva — Le plus simple pour charts + visuels “marketing”</h2>
+                                    <p>Canva est parfait si ton besoin c’est : un graphique propre, une mise en page rapide, et un rendu social-friendly. Ils ont un générateur de graphiques + templates de graphs personnalisables.</p>
+                                    
+                                    <h3>Le point fort :</h3>
+                                    <ul>
+                                        <li>Ultra accessible.</li>
+                                        <li>Rapide pour sortir un visuel “présentation”.</li>
+                                    </ul>
+
+                                    <h3>Le point faible :</h3>
+                                    <ul>
+                                        <li>Ce n’est pas “Shopify admin” exactement (plus générique).</li>
+                                    </ul>
+
+                                    <p className="text-sm italic">Idéal pour : slides, posts, sections “preuve visuelle” dans une page.</p>
+                                </Reveal>
+
+                                {/* 5) BrowserFrame */}
+                                <Reveal delay={300}>
+                                    <h2>5) BrowserFrame (ou Screely) — Le hack final pour rendre un screen “pro”</h2>
+                                    <p>Même un bon screen peut paraître cheap s’il est “nu”. Un outil de frame te permet de l’enrober comme un vrai navigateur / OS, avec padding et shadow.</p>
+                                    
+                                    <ul className="mt-4">
+                                        <li><strong>BrowserFrame :</strong> wrap une capture dans un frame de navigateur facilement.</li>
+                                        <li><strong>Screely :</strong> transforme une capture en mockup browser prêt à partager.</li>
+                                    </ul>
+
+                                    <p className="text-sm italic">Idéal pour : posts, miniatures, pages de vente, “before/after” propres.</p>
+                                </Reveal>
+
+                                {/* Verdict 2025 */}
+                                <Reveal delay={300}>
+                                    <div className="bg-white/5 border border-white/10 rounded-2xl p-8 mt-16">
+                                        <h2 className="!mt-0 mb-6 text-center border-b border-white/10 pb-6">Verdict 2025</h2>
+                                        <div className="space-y-4">
+                                            <div className="flex items-start gap-4">
+                                                <div className="bg-white/10 p-2 rounded-full mt-1"><ArrowRight className="w-4 h-4 text-white"/></div>
+                                                <div>
+                                                    <strong className="text-white block">Tu veux le meilleur ratio vitesse / réalisme / itération</strong>
+                                                    <span className="text-zinc-400">→ Gendash (#1)</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-4">
+                                                <div className="bg-white/10 p-2 rounded-full mt-1"><ArrowRight className="w-4 h-4 text-white"/></div>
+                                                <div>
+                                                    <strong className="text-white block">Tu veux de la capture 100% réelle</strong>
+                                                    <span className="text-zinc-400">→ Shopify Dev Store (Partners)</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-4">
+                                                <div className="bg-white/10 p-2 rounded-full mt-1"><ArrowRight className="w-4 h-4 text-white"/></div>
+                                                <div>
+                                                    <strong className="text-white block">Tu veux du pixel-perfect design</strong>
+                                                    <span className="text-zinc-400">→ Polaris + Figma</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-4">
+                                                <div className="bg-white/10 p-2 rounded-full mt-1"><ArrowRight className="w-4 h-4 text-white"/></div>
+                                                <div>
+                                                    <strong className="text-white block">Tu veux du visuel marketing ultra simple</strong>
+                                                    <span className="text-zinc-400">→ Canva</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-4">
+                                                <div className="bg-white/10 p-2 rounded-full mt-1"><ArrowRight className="w-4 h-4 text-white"/></div>
+                                                <div>
+                                                    <strong className="text-white block">Tu veux un rendu “post-ready”</strong>
+                                                    <span className="text-zinc-400">→ BrowserFrame / Screely</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Reveal>
+                            </div>
+                        </article>
+
+                        {/* FAQ Section */}
+                        <section id="faq" className="max-w-3xl mx-auto mt-24 pt-24 border-t border-white/10">
+                            <Reveal>
+                                <h2 className="font-display font-bold text-3xl md:text-4xl mb-12">Questions fréquentes</h2>
+                                <div className="space-y-2">
+                                    <FAQItem 
+                                        question="Est-ce que c’est ok de l’utiliser pour une démo / contenu ?" 
+                                        answer="Oui, pour illustrer, faire une maquette, un tuto, un pitch, une mise en scène. Évite de présenter une simulation comme un résultat réel." 
+                                    />
+                                    <FAQItem 
+                                        question="C’est quoi le plus simple si je veux publier tous les jours ?" 
+                                        answer="Gendash + un frame (BrowserFrame) = combo le plus rapide." 
+                                    />
+                                </div>
+                            </Reveal>
+                        </section>
+
+                        {/* Conclusion CTA */}
+                        <section className="max-w-3xl mx-auto mt-24 text-center">
+                            <Reveal>
+                                <div className="bg-gradient-to-b from-white/10 to-transparent p-1 rounded-2xl">
+                                    <div className="bg-black/80 backdrop-blur rounded-xl p-12 border border-white/10">
+                                        <h2 className="font-display font-bold text-3xl mb-4">Conclusion</h2>
+                                        <p className="text-zinc-400 mb-8 max-w-lg mx-auto">
+                                            Si ton objectif c’est de produire vite, propre, et publier régulièrement : <strong>Gendash</strong> est la solution la plus efficace en 2025.
+                                        </p>
+                                        <Button primary href="https://gendash.fr">Créer une maquette maintenant <ArrowRight /></Button>
+                                    </div>
+                                </div>
+                            </Reveal>
+                        </section>
+
+                    </main>
+
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ArticlePage />);
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

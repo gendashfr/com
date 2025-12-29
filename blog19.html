@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr" class="bg-black">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO META -->
+    <title>“Fake it till you make it” en dropshipping : stratégie viable ou piège ?</title>
+    <meta name="description" content="Oui, mais pas comme tu crois. Le “fake” viable = branding, démos, storytelling. Le “fake” dangereux = faux résultats, faux avis, tromperie. Guide + alternatives clean + rôle de GendashPro." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://gendash.pro/blog/fake-it-till-you-make-it-dropshipping" />
+    <meta name="theme-color" content="#050505" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="“Fake it till you make it” en dropshipping : stratégie viable ou piège ?" />
+    <meta property="og:description" content="Analyse de la stratégie 'Fake it' en e-commerce : branding vs mensonges, et comment construire une image pro sans tromper." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://gendash.pro/blog/fake-it-till-you-make-it-dropshipping" />
+    
+    <!-- Core Libs -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        black: '#050505',
+                        white: '#EAEAEA',
+                        brand: '#6366f1',
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\" opacity=\"0.05\"/%3E%3C/svg%3E')",
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #EAEAEA; overflow-x: hidden; }
+        ::selection { background: #EAEAEA; color: #050505; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        /* Custom Cursor */
+        #cursor {
+            position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+            border: 1px solid white; border-radius: 50%; pointer-events: none;
+            z-index: 9999; transform: translate(-50%, -50%); mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            display: none;
+        }
+        @media (hover: hover) { #cursor { display: block; } }
+        #cursor.hovered { width: 60px; height: 60px; background-color: white; border: none; }
+
+        .reveal-text { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal-text.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Blog Typography */
+        .blog-content p { margin-bottom: 1.5rem; line-height: 1.8; color: #a1a1aa; font-weight: 300; font-size: 1.125rem; }
+        .blog-content h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 2rem; color: #fff; margin-top: 3.5rem; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+        .blog-content h3 { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1.5rem; color: #fff; margin-top: 2rem; margin-bottom: 1rem; }
+        .blog-content strong { color: #fff; font-weight: 600; }
+        .blog-content ul { margin-bottom: 1.5rem; padding-left: 0.5rem; color: #a1a1aa; }
+        .blog-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #a1a1aa; }
+        
+        /* SVG List Bullet */
+        .blog-content ul li { margin-bottom: 0.75rem; position: relative; padding-left: 1.5rem; line-height: 1.7; }
+        .blog-content ul li::before { 
+            content: ""; 
+            position: absolute; 
+            left: 0; 
+            top: 11px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+        
+        .highlight-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.5rem; border-radius: 0.5rem; margin: 2rem 0; }
+        .alert-box { border-left: 3px solid #f87171; background: rgba(248, 113, 113, 0.05); padding: 1rem 1.5rem; margin: 1.5rem 0; border-radius: 0 0.5rem 0.5rem 0; }
+        .alert-title { color: #f87171; font-weight: 600; margin-bottom: 0.5rem; display: block; }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- ICONS ---
+        const ArrowRight = ({ className }) => <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>;
+        const Play = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>;
+        const Warning = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>;
+        const Check = ({ className }) => <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>;
+        const XCircle = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>;
+        const Box = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>;
+        const Layers = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>;
+        const Zap = ({ className }) => <svg className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>;
+
+        // --- COMPONENTS ---
+
+        const CustomCursor = () => {
+            useEffect(() => {
+                const cursor = document.getElementById('cursor');
+                if (!cursor) return;
+                const moveCursor = (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; };
+                const addHover = () => cursor.classList.add('hovered');
+                const removeHover = () => cursor.classList.remove('hovered');
+                
+                document.querySelectorAll('a, button, .hover-trigger').forEach(el => {
+                    el.addEventListener('mouseenter', addHover);
+                    el.addEventListener('mouseleave', removeHover);
+                });
+                window.addEventListener('mousemove', moveCursor);
+                return () => window.removeEventListener('mousemove', moveCursor);
+            }, []);
+            return <div id="cursor"></div>;
+        };
+
+        const Reveal = ({ children, delay = 0 }) => {
+            const ref = useRef(null);
+            useEffect(() => {
+                const observer = new IntersectionObserver(([entry]) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => { if (ref.current) ref.current.classList.add('visible'); }, delay);
+                    }
+                }, { threshold: 0.1 });
+                if (ref.current) observer.observe(ref.current);
+                return () => observer.disconnect();
+            }, [delay]);
+            return <div ref={ref} className="reveal-text">{children}</div>;
+        };
+
+        const Button = ({ children, primary, onClick, href, target }) => {
+            const className = `inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 hover-trigger ${
+                primary 
+                ? 'bg-white text-black hover:bg-zinc-200' 
+                : 'border border-white/20 text-white hover:bg-white/10'
+            }`;
+            
+            if (href) return <a href={href} target={target} className={className}>{children}</a>;
+            return <button onClick={onClick} className={className}>{children}</button>;
+        };
+
+        const Navbar = () => (
+            <nav className="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
+                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                    <a href="https://gendash.fr" className="font-display font-bold text-2xl tracking-tighter text-white hover-trigger">
+                        GENDASH<span className="text-zinc-500">.</span>
+                    </a>
+                    <div className="hidden md:flex gap-8">
+                    </div>
+                    <Button primary href="https://gendash.fr">Générer une maquette</Button>
+                </div>
+            </nav>
+        );
+
+        const Footer = () => (
+            <footer className="py-20 px-6 border-t border-white/10 bg-[#020202] z-10 relative">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+                    <div className="flex flex-col gap-6 max-w-xs">
+                        <h2 className="text-3xl font-display font-bold tracking-tighter select-none">GENDASH</h2>
+                        <p className="text-zinc-500 text-sm leading-relaxed">
+                            La référence en matière de preuve sociale visuelle. Dominez votre marché avec des outils d'élite.
+                        </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 md:gap-20">
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Socials</h3>
+                            <a href="https://www.instagram.com/gendashboard/?igsh=YWVjejk2cjlkd2N5#" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Instagram</a>
+                            <a href="https://www.tiktok.com/@gendash.fr" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">TikTok</a>
+                            <a href="blog.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Blog</a>
+                        </div>
+                        
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Légal</h3>
+                            <a href="mentionslegales.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Mentions Légales</a>
+                            <a href="confidentialite.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Confidentialité</a>
+                            <a href="cgv.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">CGV</a>
+                        </div>
+                        
+                        <div className="flex flex-col gap-4">
+                            <h3 className="text-xs font-bold uppercase tracking-widest text-white mb-2">Société</h3>
+                            <a href="pdg.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">PDG</a>
+                            <a href="support.html" className="text-zinc-500 hover:text-white transition-colors text-sm hover-trigger cursor-pointer">Support</a>
+                        </div>
+                    </div>
+                </div>
+                <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p className="text-[10px] text-zinc-600 uppercase tracking-widest">© 2024 GENDASH PRO. All rights reserved.</p>
+                    <div className="flex gap-4">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        <span className="text-[10px] text-zinc-500 uppercase tracking-widest">System Operational</span>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        // --- MAIN ARTICLE PAGE ---
+
+        const ArticlePage = () => {
+            return (
+                <div className="bg-black min-h-screen relative overflow-hidden">
+                    <div className="fixed inset-0 bg-noise opacity-30 pointer-events-none z-0"></div>
+                    <CustomCursor />
+                    <Navbar />
+
+                    <main className="relative z-10 pt-32 pb-24 px-6">
+                        <article className="max-w-3xl mx-auto">
+                            
+                            {/* Header Article */}
+                            <Reveal>
+                                <div className="mb-12">
+                                    <span className="text-sm font-medium text-zinc-500 border border-white/10 rounded-full px-3 py-1 mb-6 inline-block">Dropshipping & Stratégie</span>
+                                    <h1 className="font-display font-bold text-3xl md:text-5xl leading-tight mb-6">
+                                        “Fake it till you make it” en dropshipping : stratégie viable ou piège ?
+                                    </h1>
+                                    <div className="flex items-center gap-4 text-zinc-500 text-sm">
+                                        <span>Par l'équipe Gendash</span>
+                                        <span className="w-1 h-1 bg-zinc-700 rounded-full"></span>
+                                        <span>4 min de lecture</span>
+                                        <span className="w-1 h-1 bg-zinc-700 rounded-full"></span>
+                                        <span>Mis à jour Janvier 2025</span>
+                                    </div>
+                                </div>
+                            </Reveal>
+
+                            {/* Intro */}
+                            <div className="blog-content">
+                                <Reveal delay={100}>
+                                    <p className="text-xl md:text-2xl text-white font-light leading-relaxed mb-8">
+                                        Oui… si tu comprends ce que ça veut vraiment dire. Beaucoup traduisent “Fake it” par “mentir sur mes résultats”.
+                                    </p>
+                                    
+                                    <div className="bg-white/5 p-6 rounded border border-white/10 mb-8">
+                                        <p className="!mb-0 text-sm text-zinc-400">
+                                            Et ça, ce n’est pas une stratégie : c’est un boomerang. La version viable, c’est autre chose : <strong>avoir l’air pro avant d’être grand, sans mentir sur des faits.</strong>
+                                        </p>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 1 & 2 - Fake Clean vs Dangerous */}
+                                <Reveal delay={200}>
+                                    <div className="grid md:grid-cols-2 gap-6 my-8">
+                                        <div className="bg-green-500/5 p-6 rounded-lg border border-green-500/20">
+                                            <div className="flex items-center gap-3 mb-4">
+                                                <div className="bg-green-500/20 p-2 rounded-full"><Check className="text-green-500 w-5 h-5"/></div>
+                                                <h3 className="!mt-0 !mb-0 text-white text-lg">Le "Fake" Viable</h3>
+                                            </div>
+                                            <p className="text-xs text-zinc-400 mb-4 uppercase tracking-widest font-bold">Standard Pro</p>
+                                            <ul className="text-sm text-zinc-300 space-y-3 pl-0">
+                                                <li>• Branding soigné (logo, couleurs)</li>
+                                                <li>• Photos/Vidéos produit propres</li>
+                                                <li>• Site rapide & rassurant</li>
+                                                <li>• FAQ & Politique de retour solides</li>
+                                                <li>• Démos propres du process</li>
+                                            </ul>
+                                            <p className="text-xs text-green-400 mt-4 border-t border-green-500/20 pt-3">Tu joues au niveau supérieur sur ce que tu contrôles.</p>
+                                        </div>
+
+                                        <div className="bg-red-500/5 p-6 rounded-lg border border-red-500/20">
+                                            <div className="flex items-center gap-3 mb-4">
+                                                <div className="bg-red-500/20 p-2 rounded-full"><XCircle className="text-red-500 w-5 h-5"/></div>
+                                                <h3 className="!mt-0 !mb-0 text-white text-lg">Le "Fake" Toxique</h3>
+                                            </div>
+                                            <p className="text-xs text-zinc-400 mb-4 uppercase tracking-widest font-bold">Mensonge Pur</p>
+                                            <ul className="text-sm text-zinc-300 space-y-3 pl-0">
+                                                <li>• Faux avis clients</li>
+                                                <li>• Faux avant/après</li>
+                                                <li>• Faux résultats financiers</li>
+                                                <li>• Fausse rareté (compteur bidon)</li>
+                                                <li>• Fausses preuves de revenus</li>
+                                            </ul>
+                                            <p className="text-xs text-red-400 mt-4 border-t border-red-500/20 pt-3">Ça détruit ton actif #1 : la confiance.</p>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 3 - Strategy Steps */}
+                                <Reveal delay={300}>
+                                    <h2>3) La stratégie viable : “Pro avant d’être gros”</h2>
+                                    <div className="space-y-4 my-6">
+                                        <div className="bg-zinc-900 p-5 rounded border border-white/5 flex gap-4">
+                                            <div className="text-brand font-display font-bold text-xl">A</div>
+                                            <div>
+                                                <strong className="text-white block mb-1">Build une marque, pas un site</strong>
+                                                <p className="text-sm text-zinc-400 !mb-0">1 promesse claire, 1 produit hero, 1 angle client évident.</p>
+                                            </div>
+                                        </div>
+                                        <div className="bg-zinc-900 p-5 rounded border border-white/5 flex gap-4">
+                                            <div className="text-brand font-display font-bold text-xl">B</div>
+                                            <div>
+                                                <strong className="text-white block mb-1">Niveau “Apple” sur l’expérience</strong>
+                                                <p className="text-sm text-zinc-400 !mb-0">Page produit clean, mobile parfait, checkout simple, emails de confirmation propres.</p>
+                                            </div>
+                                        </div>
+                                        <div className="bg-zinc-900 p-5 rounded border border-white/5 flex gap-4">
+                                            <div className="text-brand font-display font-bold text-xl">C</div>
+                                            <div>
+                                                <strong className="text-white block mb-1">Démo ton système</strong>
+                                                <p className="text-sm text-zinc-400 !mb-0">Au lieu de dire “j’ai gagné X”, montre comment tu choisis tes produits, comment tu fais tes créas.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 4 - Social Proof */}
+                                <Reveal delay={300}>
+                                    <h2>4) Le problème de la preuve sociale (au début)</h2>
+                                    <p>Les débutants bloquent sans avis ni ventes. Mais tu peux créer de la preuve sociale sans mentir :</p>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                                        {[
+                                            "UGC “démonstration” (vidéo produit, unboxing)",
+                                            "Micro-influenceurs (petits comptes)",
+                                            "Bêta testers (10 ventes à prix réduit contre feedback)",
+                                            "Contenus éducatifs (“comment utiliser”)"
+                                        ].map((txt, i) => (
+                                            <div key={i} className="bg-zinc-900/50 p-3 rounded border border-white/5 text-sm text-zinc-300 flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-brand"></div> {txt}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 5 - GendashPro Role */}
+                                <Reveal delay={300}>
+                                    <h2>5) Où GendashPro peut aider (version viable)</h2>
+                                    <p>GendashPro n’est pas là pour “inventer des revenus”. Il est là pour la partie <strong>mise en scène premium</strong>.</p>
+                                    <div className="bg-white/5 p-6 rounded-lg my-6 border-l-2 border-brand">
+                                        <p className="text-sm text-zinc-300 !mb-4">
+                                            Tu peux créer des visuels de démo pour tes vidéos (storytelling), illustrer un process business, et rendre ton contenu plus “authority” sans avoir 1000 ventes.
+                                        </p>
+                                        <div className="flex gap-4 text-xs font-bold uppercase tracking-wide">
+                                            <span className="text-green-500">✅ Démo / Simulation</span>
+                                            <span className="text-red-500">❌ Preuve Réelle de Gains</span>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                                {/* Section 6 - The Test */}
+                                <Reveal delay={300}>
+                                    <h2>6) Le test simple : Fact vs Fiction</h2>
+                                    <p>Avant de publier, pose-toi cette question :</p>
+                                    <div className="bg-zinc-900 p-6 rounded-lg text-center">
+                                        <p className="text-white font-medium italic mb-6">
+                                            “Est-ce que je suis en train de présenter un fait (résultat, paiement, avis) comme réel alors qu’il ne l’est pas ?”
+                                        </p>
+                                        <div className="flex justify-center gap-8">
+                                            <div className="text-center">
+                                                <span className="block text-red-500 font-bold text-xl mb-1">OUI</span>
+                                                <span className="text-xs text-zinc-500">Fake Dangereux</span>
+                                            </div>
+                                            <div className="w-px bg-white/10"></div>
+                                            <div className="text-center">
+                                                <span className="block text-green-500 font-bold text-xl mb-1">NON</span>
+                                                <span className="text-xs text-zinc-500">Fake Viable</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Reveal>
+
+                            </div>
+                        </article>
+
+                        {/* Conclusion CTA */}
+                        <section className="max-w-3xl mx-auto mt-24 text-center">
+                            <Reveal>
+                                <div className="bg-gradient-to-b from-white/10 to-transparent p-1 rounded-2xl">
+                                    <div className="bg-black/80 backdrop-blur rounded-xl p-12 border border-white/10">
+                                        <h2 className="font-display font-bold text-3xl mb-4">Soyez Premium, pas Illusionniste</h2>
+                                        <p className="text-zinc-400 mb-8 max-w-lg mx-auto">
+                                            Le meilleur move long terme, c’est d’être premium dans l’exécution. Utilisez GendashPro pour vos visuels de démo.
+                                        </p>
+                                        <div className="flex flex-col md:flex-row gap-4 justify-center">
+                                            <Button primary href="https://gendash.fr">Accéder à GendashPro <ArrowRight /></Button>
+                                            <Button href="https://www.youtube.com/@gendashfr" target="_blank"><Play className="w-4 h-4"/> Voir les tutos YouTube</Button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Reveal>
+                        </section>
+
+                    </main>
+
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ArticlePage />);
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
